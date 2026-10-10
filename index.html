@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="th">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>คุ้มไหม? · KumMai — เปรียบเทียบความคุ้มค่า</title>
+  <meta name="description" content="กรอกตัวเลือกสินค้า ปริมาณ จำนวน ราคา และค่าอื่นๆ แล้วรู้ทันทีว่าตัวเลือกไหนคุ้มที่สุด">
+  <meta name="theme-color" content="#ffffff">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap brand">
+      <span class="brand-mark" aria-hidden="true">🛒</span>
+      <div>
+        <h1>คุ้มไหม? <span class="brand-en">KumMai</span></h1>
+        <p>ใส่ตัวเลือกสินค้า แล้วรู้ทันทีว่าอันไหนคุ้มที่สุด</p>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap layout">
+    <section class="panel-options" aria-labelledby="options-title">
+      <div class="panel-head">
+        <h2 id="options-title">ตัวเลือกสินค้า</h2>
+        <button type="button" id="clear-btn" class="btn-link">ล้างทั้งหมด</button>
+      </div>
+      <div id="options" class="options"></div>
+      <button type="button" id="add-btn" class="add-tile">
+        <span class="add-icon" aria-hidden="true">+</span> เพิ่มตัวเลือก
+      </button>
+    </section>
+
+    <section class="panel-results" id="results-section" aria-labelledby="results-title">
+      <div class="panel-head">
+        <h2 id="results-title">ผลการเปรียบเทียบ</h2>
+      </div>
+      <div id="results" aria-live="polite"></div>
+    </section>
+  </main>
+
+  <button type="button" id="sticky-bar" class="sticky-bar" hidden></button>
+
+  <template id="card-template">
+    <article class="card">
+      <div class="card-head">
+        <span class="badge-letter"></span>
+        <input class="input name" data-field="name" type="text" placeholder="ชื่อ / ร้าน" aria-label="ชื่อตัวเลือก">
+        <span class="best-flag">🏆 คุ้มสุด</span>
+        <button type="button" class="remove" data-action="remove" aria-label="ลบตัวเลือกนี้">✕</button>
+      </div>
+      <div class="fields">
+        <label class="field field-qty">
+          <span>ปริมาณต่อชิ้น</span>
+          <div class="qty-row">
+            <input class="input num" data-field="qty" type="text" inputmode="decimal" placeholder="0">
+            <select class="input unit" data-field="unit" aria-label="หน่วย"></select>
+          </div>
+        </label>
+        <label class="field field-count">
+          <span>จำนวน</span>
+          <div class="affix">
+            <span class="affix-sign" aria-hidden="true">×</span>
+            <input class="input num" data-field="count" type="text" inputmode="decimal" placeholder="1" title="จำนวนชิ้น/แพ็คที่ซื้อ (เว้นว่าง = 1)">
+          </div>
+        </label>
+        <label class="field">
+          <span>ราคารวม (฿)</span>
+          <input class="input num" data-field="price" type="text" inputmode="decimal" placeholder="0" title="ราคาที่จ่ายสำหรับทุกชิ้นรวมกัน">
+        </label>
+        <label class="field">
+          <span>ค่าอื่นๆ (฿)</span>
+          <input class="input num" data-field="extra" type="text" inputmode="decimal" placeholder="ค่าส่ง ฯลฯ" title="ค่าส่ง ค่าธรรมเนียม ฯลฯ — ส่วนลดใส่เป็นค่าติดลบ">
+        </label>
+      </div>
+      <div class="card-result"></div>
+    </article>
+  </template>
+
+  <script src="app.js"></script>
+</body>
+</html>
